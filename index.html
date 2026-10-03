@@ -6,9 +6,12 @@
 <title>Para mi niña</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;1,6..96,400;1,6..96,600&family=Caveat:wght@500;700&family=Figtree:wght@400;500;600&display=swap">
 <style>
+body{margin:0}
+img{max-width:100%}
+/* Layout: un scrapbook. Polaroids chuecas pegadas con cinta sobre papel rosa, una tira de fotocabina y una franja de leopardo como firma de ella. */
 :root{
-  --paper:#fbe7eb; --ink:#3a1420; --soft:#7d4a58;
-  --cherry:#b3122f; --tape:#f3dfa6;
+  --paper:#fbe7eb; --paper-2:#f6d3da; --ink:#3a1420; --soft:#7d4a58;
+  --cherry:#b3122f; --rose:#e58aa0; --tape:#f3dfa6;
   --card:#fffaf6; --card-ink:#3a1420; --film:#1c0b10;
   --leo:#e8c79b; --spot:#3a2016; --spot-in:#b9793f;
   --shadow:0 10px 24px -12px rgba(90,20,40,.45);
@@ -16,16 +19,21 @@
   --hand:"Caveat","Segoe Script","Comic Sans MS",cursive;
   --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
 }
-@media (prefers-color-scheme:dark){:root{
-  --paper:#200a11; --ink:#fbe1e6; --soft:#d6a3b0;
-  --cherry:#ff7a92; --tape:#c8a968;
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#200a11; --paper-2:#32101b; --ink:#fbe1e6; --soft:#d6a3b0;
+  --cherry:#ff7a92; --rose:#9c4257; --tape:#c8a968;
   --card:#f6ece6; --card-ink:#3a1420; --film:#0c0406;
   --leo:#c9a473; --spot:#2a150d; --spot-in:#8d5628;
   --shadow:0 12px 26px -12px rgba(0,0,0,.8); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#200a11; --paper-2:#32101b; --ink:#fbe1e6; --soft:#d6a3b0;
+  --cherry:#ff7a92; --rose:#9c4257; --tape:#c8a968;
+  --card:#f6ece6; --card-ink:#3a1420; --film:#0c0406;
+  --leo:#c9a473; --spot:#2a150d; --spot-in:#8d5628;
+  --shadow:0 12px 26px -12px rgba(0,0,0,.8); color-scheme:dark}
 
 *{box-sizing:border-box}
-img{max-width:100%}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.6;overflow-x:hidden}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.6;overflow-x:hidden}
 .wrap{max-width:1080px;margin:0 auto;padding-inline:20px;padding-block:28px 56px;display:flex;flex-direction:column;gap:72px}
 h1,h2{font-family:var(--display);font-weight:500;margin:0;text-wrap:balance;line-height:1.02}
 h1{font-size:clamp(3rem,11vw,6.5rem);letter-spacing:-.02em}
@@ -64,6 +72,7 @@ p{margin:0}
    radial-gradient(ellipse 5px 4px at 80px 8px,var(--spot) 60%,transparent 66%);
   background-size:96px 34px}
 
+
 /* album */
 .sec{display:flex;flex-direction:column;gap:32px}
 .sec-head{display:flex;flex-direction:column;gap:8px}
@@ -73,7 +82,7 @@ p{margin:0}
 .album .pola:nth-child(3n){transform:rotate(-1.5deg)}
 .album .pola.wide img{aspect-ratio:4/3.2}
 
-/* tira de fotocabina */
+/* tira */
 .film-scroll{overflow-x:auto;margin-inline:-20px;padding-inline:20px;padding-block:6px 14px}
 .film{display:flex;gap:10px;background:var(--film);padding:26px 14px;width:max-content;position:relative;transform:rotate(-1deg)}
 .film::before,.film::after{content:"";position:absolute;left:8px;right:8px;height:10px;background:repeating-linear-gradient(90deg,var(--card) 0 12px,transparent 12px 26px);opacity:.85}
@@ -81,10 +90,10 @@ p{margin:0}
 .film button{border:0;padding:0;background:none;cursor:zoom-in;display:block}
 .film img{display:block;height:300px;width:190px;object-fit:cover}
 
+
 footer{display:flex;flex-direction:column;gap:20px;align-items:center;text-align:center}
 footer .hand{font-size:2.2rem}
 
-/* foto ampliada */
 .btn{font:600 1rem var(--body);background:var(--cherry);color:var(--paper);border:0;padding:12px 22px;border-radius:999px;cursor:pointer}
 dialog{border:0;padding:0;background:transparent;max-width:min(92vw,720px);max-height:92vh}
 dialog::backdrop{background:rgba(20,5,10,.82)}
@@ -117,11 +126,12 @@ dialog form{display:flex;justify-content:center;padding-top:12px}
       <div class="leo" role="img" aria-label="Franja de leopardo, como tu chamarra"></div>
     </div>
     <div class="stack">
-      <button class="pola" data-cap="feria, leopardo y tú"><img src="img/15.jpg" alt="Ella con chamarra de leopardo sacando la lengua en la feria"><span>feria, leopardo y tú</span></button>
-      <button class="pola" data-cap="los tres"><img src="img/01.jpg" alt="Los dos con el perrito en suéter"><span>los tres</span></button>
-      <button class="pola" data-cap="noche de mascarillas"><img src="img/02.jpg" alt="Los dos con mascarilla negra en la nariz sacando la lengua"><span>noche de mascarillas</span></button>
+      <button class="pola" data-cap="feria, leopardo y tú"><img src="15.jpg" alt="Ella con chamarra de leopardo sacando la lengua en la feria"><span>feria, leopardo y tú</span></button>
+      <button class="pola" data-cap="los tres"><img src="01.jpg" alt="Los dos con el perrito en suéter"><span>los tres</span></button>
+      <button class="pola" data-cap="noche de mascarillas"><img src="02.jpg" alt="Los dos con mascarilla negra en la nariz sacando la lengua"><span>noche de mascarillas</span></button>
     </div>
   </header>
+
 
   <section class="sec">
     <div class="sec-head">
@@ -129,12 +139,12 @@ dialog form{display:flex;justify-content:center;padding-top:12px}
       <h2>Nosotros, <em>de cerquita</em></h2>
     </div>
     <div class="album">
-      <button class="pola wide" data-cap="tú posando, yo estorbando"><img src="img/04.jpg" alt="Ella sacando la lengua y él asomando un ojo"><span>tú posando, yo estorbando</span></button>
-      <button class="pola" data-cap="cuatro ojos ven más bonito"><img src="img/06.jpg" alt="Los dos con lentes, muy cerca de la cámara"><span>cuatro ojos ven más bonito</span></button>
-      <button class="pola" data-cap="tu sonrisa de cerquita"><img src="img/07.jpg" alt="Ella sonriendo con lentes"><span>tu sonrisa de cerquita</span></button>
-      <button class="pola" data-cap="siempre sacando la lengua"><img src="img/12.jpg" alt="Ella sacando la lengua y él mirando a la cámara"><span>siempre sacando la lengua</span></button>
-      <button class="pola wide" data-cap="besito con mascarilla"><img src="img/09.jpg" alt="Un beso con las mascarillas puestas"><span>besito con mascarilla</span></button>
-      <button class="pola" data-cap="amor del bueno"><img src="img/03.jpg" alt="Ella dándole un beso al perrito"><span>amor del bueno</span></button>
+      <button class="pola wide" data-cap="tú posando, yo estorbando"><img src="04.jpg" alt="Ella sacando la lengua y él asomando un ojo"><span>tú posando, yo estorbando</span></button>
+      <button class="pola" data-cap="cuatro ojos ven más bonito"><img src="06.jpg" alt="Los dos con lentes, muy cerca de la cámara"><span>cuatro ojos ven más bonito</span></button>
+      <button class="pola" data-cap="tu sonrisa de cerquita"><img src="07.jpg" alt="Ella sonriendo con lentes"><span>tu sonrisa de cerquita</span></button>
+      <button class="pola" data-cap="siempre sacando la lengua"><img src="12.jpg" alt="Ella sacando la lengua y él mirando a la cámara"><span>siempre sacando la lengua</span></button>
+      <button class="pola wide" data-cap="besito con mascarilla"><img src="09.jpg" alt="Un beso con las mascarillas puestas"><span>besito con mascarilla</span></button>
+      <button class="pola" data-cap="amor del bueno"><img src="03.jpg" alt="Ella dándole un beso al perrito"><span>amor del bueno</span></button>
     </div>
   </section>
 
@@ -145,15 +155,16 @@ dialog form{display:flex;justify-content:center;padding-top:12px}
     </div>
     <div class="film-scroll">
       <div class="film">
-        <button data-cap="de camino a donde sea, pero contigo"><img src="img/05.jpg" alt="Los dos en el camión, ella con lentes de sol"></button>
-        <button data-cap="en blanco y negro también me encantas"><img src="img/08.jpg" alt="Foto en blanco y negro, ella con lentes"></button>
-        <button data-cap="tú divina, yo asustado"><img src="img/10.jpg" alt="Ella con chamarra de leopardo y él con cara de sorpresa"></button>
-        <button data-cap="la mitad de cada quien"><img src="img/11.jpg" alt="Foto en blanco y negro con la mitad de sus caras"></button>
-        <button data-cap="mi cachorrita enojada"><img src="img/13.jpg" alt="Ella con filtro de perrito dálmata"></button>
-        <button data-cap="igual de locos"><img src="img/14.jpg" alt="Los dos sacando la lengua"></button>
+        <button data-cap="de camino a donde sea, pero contigo"><img src="05.jpg" alt="Los dos en el camión, ella con lentes de sol"></button>
+        <button data-cap="en blanco y negro también me encantas"><img src="08.jpg" alt="Foto en blanco y negro, ella con lentes"></button>
+        <button data-cap="tú divina, yo asustado"><img src="10.jpg" alt="Ella con chamarra de leopardo y él con cara de sorpresa"></button>
+        <button data-cap="la mitad de cada quien"><img src="11.jpg" alt="Foto en blanco y negro con la mitad de sus caras"></button>
+        <button data-cap="mi cachorrita enojada"><img src="13.jpg" alt="Ella con filtro de perrito dálmata"></button>
+        <button data-cap="igual de locos"><img src="14.jpg" alt="Los dos sacando la lengua"></button>
       </div>
     </div>
   </section>
+
 
   <footer>
     <div class="leo" style="width:min(320px,100%)" aria-hidden="true"></div>
@@ -163,23 +174,18 @@ dialog form{display:flex;justify-content:center;padding-top:12px}
 </div>
 
 <dialog id="lb" aria-label="Foto ampliada">
-  <figure>
-    <img id="lbimg" src="" alt="">
-    <figcaption id="lbcap"></figcaption>
-    <form method="dialog"><button class="btn">Cerrar</button></form>
+  <figure><img id="lbimg" src="" alt=""><figcaption id="lbcap"></figcaption>
+    <form method="dialog"><button class="btn" id="cerrar">Cerrar</button></form>
   </figure>
 </dialog>
 
 <script>
-const lb = document.getElementById('lb'),
-      lbimg = document.getElementById('lbimg'),
-      lbcap = document.getElementById('lbcap');
-document.querySelectorAll('[data-cap]').forEach(b => b.addEventListener('click', () => {
-  const i = b.querySelector('img');
-  lbimg.src = i.src; lbimg.alt = i.alt; lbcap.textContent = b.dataset.cap;
-  lb.showModal();
+const lb=document.getElementById('lb'),lbimg=document.getElementById('lbimg'),lbcap=document.getElementById('lbcap');
+document.querySelectorAll('[data-cap]').forEach(b=>b.addEventListener('click',()=>{
+  const i=b.querySelector('img');lbimg.src=i.src;lbimg.alt=i.alt;lbcap.textContent=b.dataset.cap;lb.showModal();
 }));
-lb.addEventListener('click', e => { if (e.target === lb) lb.close(); });
+lb.addEventListener('click',e=>{if(e.target===lb)lb.close()});
+
 </script>
 </body>
 </html>
